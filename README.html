@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shop-TES — README</title>
+    <style>
+        :root{
+            --bg:#0b1020;
+            --card:#111a33;
+            --text:#e9edf7;
+            --muted:#a9b4d6;
+            --accent:#4ea1ff;
+            --border:rgba(255,255,255,.12);
+            --codebg:rgba(255,255,255,.06);
+        }
+        *{box-sizing:border-box}
+        body{
+            margin:0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+            background: radial-gradient(1100px 500px at 20% 0%, rgba(78,161,255,.18), transparent 55%),
+            radial-gradient(900px 520px at 80% 10%, rgba(149,92,255,.16), transparent 60%),
+            var(--bg);
+            color:var(--text);
+            line-height:1.45;
+        }
+        .wrap{max-width:1100px;margin:0 auto;padding:28px 18px 60px}
+        header{
+            display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;
+            border:1px solid var(--border);
+            background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+            border-radius:18px;padding:18px 18px 16px;
+        }
+        header h1{margin:0;font-size:26px}
+        header p{margin:8px 0 0;color:var(--muted)}
+        .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+        .badge{
+            font-size:12px;
+            border:1px solid var(--border);
+            padding:4px 10px;border-radius:999px;
+            background:rgba(255,255,255,.04);
+        }
+        nav{
+            margin-top:18px;
+            border:1px solid var(--border);
+            background:rgba(255,255,255,.03);
+            border-radius:14px;
+            padding:12px 14px;
+        }
+        nav strong{display:block;margin-bottom:8px}
+        nav a{color:var(--accent);text-decoration:none}
+        nav ul{margin:0;padding-left:18px}
+        nav li{margin:4px 0}
+        section{
+            margin-top:18px;
+            border:1px solid var(--border);
+            background:rgba(255,255,255,.03);
+            border-radius:16px;
+            padding:18px;
+        }
+        h2{margin:0 0 10px;font-size:18px}
+        h3{margin:14px 0 8px;font-size:15px;color:#d9e3ff}
+        p{margin:8px 0;color:var(--text)}
+        ul{margin:8px 0;padding-left:18px}
+        li{margin:4px 0;color:var(--text)}
+        code,kbd{
+            background:var(--codebg);
+            border:1px solid var(--border);
+            padding:1px 6px;border-radius:6px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+            font-size: 0.95em;
+        }
+        pre{
+            margin:10px 0;
+            padding:12px 14px;
+            border-radius:12px;
+            border:1px solid var(--border);
+            background:rgba(0,0,0,.25);
+            overflow:auto;
+            box-shadow: 0 12px 24px rgba(0,0,0,.18);
+        }
+        pre code{
+            background:transparent;border:none;padding:0;
+            font-size:13px;line-height:1.45;
+            display:block;white-space:pre;
+        }
+        .grid{display:grid;grid-template-columns:1fr;gap:14px}
+        @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+        .note{
+            border-left:4px solid var(--accent);
+            padding:10px 12px;
+            background:rgba(78,161,255,.08);
+            border-radius:12px;
+        }
+        .ok{color:#89f0b6}
+        .warn{color:#ffd36c}
+        .muted{color:var(--muted)}
+        footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+        .filetree{white-space:pre; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:13px;}
+    </style>
+</head>
+<body>
+<div class="wrap">
+
+    <header>
+        <div>
+            <h1>Shop-TEST — каталог товарів (чистий PHP + MySQL + Docker)</h1>
+            <p>Тестове завдання: категорії + товари, AJAX-фільтрація та сортування без перезавантаження, Bootstrap модалка “Купити”.</p>
+            <div class="badges">
+                <span class="badge">PHP 8.3</span>
+                <span class="badge">MySQL 8.0</span>
+                <span class="badge">Docker Compose</span>
+                <span class="badge">Bootstrap 5</span>
+                <span class="badge">Vanilla JS (fetch)</span>
+                <span class="badge">utf8mb4</span>
+                <span class="badge">OOP</span>
+            </div>
+        </div>
+    </header>
+
+
+    <section id="features">
+        <h2>Функціонал</h2>
+        <ul>
+            <li>Список категорій зліва (біля кожної — кількість товарів).</li>
+            <li>Список товарів справа.</li>
+            <li>Клік по категорії — <b>AJAX</b> підвантаження товарів цієї категорії.</li>
+            <li>Сортування: <b>спочатку дешевші</b>, <b>по алфавіту</b>, <b>спочатку нові</b> — без перезавантаження.</li>
+            <li>“Купити” → Bootstrap модалка з вибраним товаром.</li>
+            <li>Стан в URL: <code>?category_id=...</code> та <code>?sort=...</code> — відновлюється після reload.</li>
+            <li>PHP → JS дані передаються як JSON (<code>window.__INITIAL_STATE__</code>).</li>
+        </ul>
+    </section>
+
+    <section id="stack">
+        <h2>Технології</h2>
+        <ul>
+            <li>PHP 8.3 (Apache)</li>
+            <li>MySQL 8.0</li>
+            <li>Bootstrap 5</li>
+            <li>Vanilla JS (fetch API)</li>
+            <li>Docker + Docker Compose</li>
+            <li>UTF-8 / <b>utf8mb4</b> (щоб не було “кракозябр”)</li>
+        </ul>
+    </section>
+
+    <section id="structure">
+        <h2>Структура проєкту</h2>
+        <pre class="filetree"><code>shop-tes/
+├── app/
+│   ├── Core/
+│   │   ├── DB.php
+│   │   └── Response.php
+│   ├── Repositories/
+│   └── autoload.php
+├── public/
+│   ├── index.php
+│   ├── assets/
+│   │   └── app.js
+│   └── api/
+│       ├── categories.php
+│       ├── products.php
+│       └── product.php
+├── sql/
+│   ├── schema.sql
+│   └── seed.sql
+├── docker/
+│   └── vhost.conf
+├── .env.php
+├── Dockerfile
+├── docker-compose.yml
+└── README.html</code></pre>
+
+    </section>
+
+    <section id="run">
+        <h2>🚀 Запуск</h2>
+        <p>З кореня проєкту:</p>
+        <pre><code>docker compose up -d --build</code></pre>
+        <p>Відкрити:</p>
+        <pre><code>http://localhost:8080</code></pre>
+    </section>
+
+    <section id="env">
+        <h2>⚙️ Конфігурація (.env.php)</h2>
+        <p>Файл <code>.env.php</code> в корені:</p>
+        <pre><code>&lt;?php
+
+return [
+  'db' => [
+    'dsn'  => 'mysql:host=db;port=3306;dbname=catalog_test;charset=utf8mb4',
+    'user' => 'app',
+    'pass' => 'app',
+    'opt'  => [],
+  ],
+];</code></pre>
+
+    </section>
+
+    <section id="api">
+        <h2>🔌 API</h2>
+        <div class="grid">
+            <div>
+                <h3>Категорії</h3>
+                <pre><code>GET /api/categories.php</code></pre>
+                <p class="muted">Повертає список категорій + кількість товарів в кожній.</p>
+            </div>
+            <div>
+                <h3>Товари</h3>
+                <pre><code>GET /api/products.php?category_id=1&amp;sort=cheap</code></pre>
+                <p class="muted">
+                    Параметри:<br/>
+                    <code>category_id</code> (0 або відсутній = всі)<br/>
+                    <code>sort</code> = <code>cheap</code> | <code>alpha</code> | <code>newest</code>
+                </p>
+            </div>
+        </div>
+
+        <h3>Один товар (для модалки)</h3>
+        <pre><code>GET /api/product.php?id=5</code></pre>
+    </section>
+
+    <section id="frontend">
+        <h2>🧠 Frontend логіка</h2>
+        <ul>
+            <li>Стан сторінки (категорія + сортування) відновлюється з URL.</li>
+            <li>PHP передає стартовий стан в JS як JSON:</li>
+        </ul>
+        <pre><code>&lt;script&gt;
+window.__INITIAL_STATE__ = {"category_id":1,"sort":"newest"};
+&lt;/script&gt;</code></pre>
+
+        <ul>
+            <li>При зміні категорії/сортування:
+                <ul>
+                    <li>робиться fetch до API</li>
+                    <li>оновлюється DOM</li>
+                    <li>оновлюється URL через <code>history.pushState()</code></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <footer>
+    </footer>
+</div>
+</body>
+</html>
